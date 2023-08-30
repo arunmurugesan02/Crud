@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CRUD</title>
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="main.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="container">
+        <h1 style="font-size: 30px; padding-top: 2px;">Divum</h1>
+        <button class="btn add">AddUser</button>
+      </div>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th>FirstName</th>
+            <th>LastName</th>
+            <th>DOB</th>
+            <th>Email</th>
+            <th>Phone No</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="display">
+          <tr>
+            <td>Arun</td>
+            <td>Murugesan</td>
+            <td>05/10/2002</td>
+            <td>arun@gmail.com</td>
+            <td>96000263421</td>
+            <td>
+              <button class="btn edit">Edit</button>
+              <button class="btn btn-primary delete">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="form-wrapper">
+        <div class="mobileForm">
+          <h1 class="btn btn-a">Add Users</h1>
+        <div class="group">
+            <label for="firstName">FirstName</label>
+            <input type="text" class="form-control" name="firstName" id="firstName"required>
+        </div>
+        <div class="group">
+            <label for="lastName">LastName</label>
+            <input type="text" class="form-control" name="firstName" id="lastName"  required>
+        </div>
+        <div class="group">
+            <label for="DOB">DOB</label>
+            <input type="date" class="form-control" name="dob" id="dob"required>
+        </div>
+        <div class="group">
+            <label for="Email">Email</label>
+            <input type="email" class="form-control" name="email" id="email" required>
+        </div>
+        <div class="group">
+            <label for="phone">PhoneNo</label>
+            <input type="number" class="form-control"name="phone" id="phone" pattern="[1-9]{1}[0-9]{9}" required  >
+        </div>
+
+        <div class="action">
+            <button class="btn submit">Submit</button>
+            <button class="btn btn-primary cancel">Cancel</button>
+        </div>
+    </div>
+        
+    </div>
+  </body>
+</html>

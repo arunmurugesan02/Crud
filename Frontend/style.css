@@ -1,0 +1,156 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-style: italic;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  margin: 20px 20px;
+  padding-top: 60px;
+  padding-right: 20px;
+  width: 100%;
+  height: 70vh;
+}
+.container {
+  display: flex;
+  justify-content: space-between;
+  max-width: 800px;
+  padding-bottom: 20px;
+}
+
+
+.table {
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 0.9em;
+  font-family: sans-serif;
+  min-width: 400px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+th,td {
+  padding: 12px 15px;
+}
+thead{
+    background-color: #f1f1f1;
+}
+.table tbody tr {
+    border-bottom: 1px solid #727171;
+}
+
+.table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+.table tbody tr.active-row {
+    font-weight: bold;
+    color: #009879;
+} 
+/* CSS */
+ .btn {
+  appearance: none;
+  background-color: #2ea44f;
+  border: 1px solid rgba(27, 31, 35, .15);
+  border-radius: 6px;
+  box-shadow: rgba(27, 31, 35, .1) 0 1px 0;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: -apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  padding: 6px 16px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+  white-space: nowrap;
+} 
+
+ .btn:focus:not(:focus-visible):not(.focus-visible) {
+  box-shadow: none;
+  outline: none;
+}
+
+.btn:hover {
+  background-color: #2c974b;
+}
+.btn-primary{
+    background-color: red;
+}
+.btn-primary:hover{
+    background-color: red;
+} 
+ .btn:focus {
+  box-shadow: rgba(46, 164, 79, .4) 0 0 0 3px;
+  outline: none;
+}
+
+.btn:disabled {
+  background-color: #94d3a2;
+  border-color: rgba(27, 31, 35, .1);
+  color: rgba(255, 255, 255, .8);
+  cursor: default;
+}
+
+.btn:active {
+  background-color: #298e46;
+  box-shadow: rgba(20, 70, 32, .2) 0 1px 0 inset;
+} 
+.form-wrapper{
+    display: none;
+}
+.upper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgb(0,0,0,0.6);
+    z-index: 1000000;
+}
+.mobileForm{
+    background-color: white;
+    width: 600px;
+    padding: 20px 50px;
+    border-radius: 5px;
+}
+
+.form-control{
+    width: 90%;
+    padding-left: 10px;
+}
+.group{
+    display: flex;
+    margin: 15px 0;
+    gap: 10px;
+}
+.group label{
+    width: 70px;
+    margin-left: 20px;
+    line-height: 40px;
+    height: 40px;
+}
+.action{
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+    gap: 100px;
+}
+
