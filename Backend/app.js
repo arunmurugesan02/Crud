@@ -68,7 +68,7 @@ app.post("/user", async (req, res) => {
       phone: req.body.phone,
     });
     console.log(user);
-    await user.save(res.json(user));
+    await user.save(res.json(user ));
   } catch (err) {
     console.log(err);
     res.status(500).send(err);

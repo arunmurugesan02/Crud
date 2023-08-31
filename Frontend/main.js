@@ -119,6 +119,7 @@ const updating = async () => {
 updating();
 
 function editData(event) {
+  console.log(event.target.parentElement.parentElement.id);
   form.classList.add("upper");
   ena_method = "PUT";
   id = event.target.parentElement.parentElement.id;
@@ -134,7 +135,8 @@ function editData(event) {
   } = ab);
 }
 
-async function deleteData(event) {
+async function deleteData(event) {event
+  console.log(event);
   console.log(event.target.parentElement.parentElement.id);
   id = event.target.parentElement.parentElement.id;
   await fetch(`http://localhost:8000/user/${id}`, {
