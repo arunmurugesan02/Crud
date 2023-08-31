@@ -24,11 +24,14 @@ cancel.onclick = function () {
 };
 
 submit.onclick = async function () {
-  (data.firstName = firstName.value),
-  (data.lastName = lastName.value),
-    (data.dob = dob.value),
-    (data.email = email.value),
-    (data.phone = phone.value);
+  data = {
+    firstName: firstName.value,
+    lastName: lastName.value,
+    dob: dob.value,
+    email: email.value,
+    phone: phone.value,
+  };
+  console.log(data);
   const firstNameCheck = /^[a-zA-Z]+$/;
 
   if (!firstNameCheck.test(firstName.value)) {
@@ -80,11 +83,12 @@ submit.onclick = async function () {
   }
 };
 function clearform() {
-  firstName.value = null;
-  lastName.value = null;
-  dob.value = null;
-  email.value = null;
-  phone.value = null;
+  firstName.value =
+    lastName.value =
+    dob.value =
+    email.value =
+    phone.value =
+      null;
 }
 const getting = async () => {
   const response = await fetch("http://localhost:8000/user");
@@ -121,12 +125,13 @@ function editData(event) {
   let ab = summa.filter((v) => {
     return v["_id"] == id;
   })[0];
-  console.log(ab._id);
-  firstName.value = ab.firstName;
-  lastName.value = ab.lastName;
-  dob.value = ab.dob;
-  email.value = ab.email;
-  phone.value = ab.phone;
+  ({
+    firstName: firstName.value,
+    lastName: lastName.value,
+    dob: dob.value,
+    email: email.value,
+    phone: phone.value,
+  } = ab);
 }
 
 async function deleteData(event) {
