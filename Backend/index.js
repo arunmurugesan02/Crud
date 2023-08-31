@@ -34,7 +34,7 @@ app.use(bodyParser.json());
 
 app.get("/user", async (req, res) => {
   try {
-    const users = await User.find().exec();
+    const users = await User.find().sort({ _id: -1 }).limit(5).exec();
     console.log(users);
     res.json(users);
   } catch (err) {
@@ -47,7 +47,7 @@ app.get("/user", async (req, res) => {
 
 app.get("/user/:id", async (req, res) => {
   try {
-    const users = await User.findById(req.params.id).exec();
+    const users = await User.find(req.params.id).sort({ _id: -1 }).limit(5).exec();
     console.log(users);
     res.json(users);
   } catch (err) {

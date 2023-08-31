@@ -11,7 +11,7 @@ const phone = document.querySelector("#phone");
 let ena_method = null;
 let data = {};
 let name = null;
-let id = null;  
+let id = null;
 let summa = [];
 
 add.onclick = function () {
@@ -24,55 +24,60 @@ cancel.onclick = function () {
 };
 
 submit.onclick = async function () {
-  // (data.firstName = firstName.value),
-    (data.lastName = lastName.value),
+  (data.firstName = firstName.value),
+  (data.lastName = lastName.value),
     (data.dob = dob.value),
     (data.email = email.value),
     (data.phone = phone.value);
-    const firstNameCheck = /^[a-zA-Z]+$/;
-            
-            if (!firstNameCheck.test(firstName.value)) {
-               alert("Please enter only alphabetic characters for  First Name: " + firstName.value);
-            } else {
-              data.firstName = firstName.value;
-            }
-            const latNameCheck = /^[a-zA-Z]+$/;
-            
-            if (!latNameCheck.test(lastName.value)) {
-               alert("Please enter only alphabetic characters for Last Name: " +lastName.value);
-            } else {
-              data.firstName = firstName.value;
-            }
-            
-            
-  if(data.firstName && data.lastName && data.dob && data.email && data.phone) {
-  console.log(ena_method);
-  if (ena_method == "PUT") {
-    console.log(id);
-    await fetch(`http://localhost:8000/user/${id}`, {
-      method: "PUT",
-      body: JSON.stringify(data),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }).then(() => {
-      clearform();
-      form.classList.remove("upper");
-      getting();
-    });
+  const firstNameCheck = /^[a-zA-Z]+$/;
+
+  if (!firstNameCheck.test(firstName.value)) {
+    alert(
+      "Please enter only alphabetic characters for  First Name: " +
+        firstName.value
+    );
   } else {
-    await fetch("http://localhost:8000/user", {
-      method: "POST",
-      body: JSON.stringify(data),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }).then(() => {
-      clearform();
-      form.classList.remove("upper");
-      getting();
-    });
-  }}
+    data.firstName = firstName.value;
+  }
+  const latNameCheck = /^[a-zA-Z]+$/;
+
+  if (!latNameCheck.test(lastName.value)) {
+    alert(
+      "Please enter only alphabetic characters for Last Name: " + lastName.value
+    );
+  } else {
+    data.firstName = firstName.value;
+  }
+
+  if (data.firstName && data.lastName && data.dob && data.email && data.phone) {
+    console.log(ena_method);
+    if (ena_method == "PUT") {
+      console.log(id);
+      await fetch(`http://localhost:8000/user/${id}`, {
+        method: "PUT",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }).then(() => {
+        clearform();
+        form.classList.remove("upper");
+        getting();
+      });
+    } else {
+      await fetch("http://localhost:8000/user", {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }).then(() => {
+        clearform();
+        form.classList.remove("upper");
+        getting();
+      });
+    }
+  }
 };
 function clearform() {
   firstName.value = null;
