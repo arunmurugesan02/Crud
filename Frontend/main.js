@@ -13,46 +13,89 @@ let data = {};
 let name = null;
 let id = null;
 let summa = [];
+let fname = false;
+let lname = false;
+let dobcheck = false;
+let emailc = false;
+let phonec = false;
 
 add.onclick = function () {
   ena_method = "POST";
+  clearform();
   form.classList.add("upper");
 };
 
 cancel.onclick = function () {
+  clearform();
   form.classList.remove("upper");
 };
 
+function change() {}
+change();
+function allowAlphaNumericSpace(thisInput) {
+  thisInput.value = thisInput.value.split(/[^a-zA-Z0-9 ]/).join("");
+}
 submit.onclick = async function () {
-  data = {
-    firstName: firstName.value,
-    lastName: lastName.value,
-    dob: dob.value,
-    email: email.value,
-    phone: phone.value,
-  };
+  // data = {
+  //   firstName: firstName.value,
+  //   lastName: lastName.value,
+  //   dob: dob.value,
+  //   email: email.value,
+  //   phone: phone.value,
+  // };
+
   console.log(data);
-  const firstNameCheck = /^[a-zA-Z]+$/;
+  if (firstName.value) {
+    const firstNameCheck = /^[a-zA-Z]+$/;
 
-  if (!firstNameCheck.test(firstName.value)) {
-    alert(
-      "Please enter only alphabetic characters for  First Name: " +
-        firstName.value
-    );
-  } else {
-    data.firstName = firstName.value;
-  }
-  const latNameCheck = /^[a-zA-Z]+$/;
-
-  if (!latNameCheck.test(lastName.value)) {
-    alert(
-      "Please enter only alphabetic characters for Last Name: " + lastName.value
-    );
-  } else {
-    data.firstName = firstName.value;
+    if (!firstNameCheck.test(firstName.value) || firstName.value === "") {
+      setError(firstName, "Enter a valid name");
+    } else {
+      data.firstName = firstName.value;
+      fname = true;
+      setSuccess(firstName);
+    }
   }
 
-  if (data.firstName && data.lastName && data.dob && data.email && data.phone) {
+  if (lastName.value) {
+    const lastnamecheck = /^[a-zA-Z]+$/;
+
+    if (!lastnamecheck.test(lastName.value) || lastName.value === "") {
+      setError(lastName, "Enter a valid name");
+
+      // inputControl.classList.remove('success')
+    } else {
+      data.lastName = lastName.value;
+      lname = true;
+      setSuccess(lastName);
+    }
+  }
+
+  if (email.value) {
+    const emailcheck = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+    if (!emailcheck.test(email.value) || email.value === "") {
+      setError(email, "Enter a valid email address");
+    } else {
+      data.email = email.value;
+      emailc = true;
+      setSuccess(email);
+    }
+  }
+
+  if (phone.value) {
+    const phonecheck = /^(0|91)?[6-9][0-9]{9}$/;
+
+    if (!phonecheck.test(phone.value) || phone.value === "") {
+      setError(phone, "Invalid phone number");
+    } else {
+      data.phone = phone.value;
+      phonec = true;
+      setSuccess(phone);
+    }
+  }
+  data.dob = dob.value;
+  if (fname && lname && emailc && phonec) {
     console.log(ena_method);
     if (ena_method == "PUT") {
       console.log(id);
@@ -119,6 +162,7 @@ const updating = async () => {
 updating();
 
 function editData(event) {
+  setSuccess(event)
   console.log(event.target.parentElement.parentElement.id);
   form.classList.add("upper");
   ena_method = "PUT";
@@ -135,7 +179,8 @@ function editData(event) {
   } = ab);
 }
 
-async function deleteData(event) {event
+async function deleteData(event) {
+  event;
   console.log(event);
   console.log(event.target.parentElement.parentElement.id);
   id = event.target.parentElement.parentElement.id;
@@ -145,3 +190,21 @@ async function deleteData(event) {event
     getting();
   });
 }
+
+const setError = (element, message) => {
+  const inputControl = element.parentElement;
+  console.log(inputControl);
+  const errorDisplay = inputControl.querySelector(".error");
+
+  errorDisplay.innerText = message;
+  inputControl.classList.add("error");
+};
+
+const setSuccess = (element) => {
+  console.log(element);
+  const inputControl = element.parentElement;
+  const errorDisplay = inputControl.querySelector(".error");
+
+  errorDisplay.innerText = "";
+  inputControl.classList.remove("error");
+};

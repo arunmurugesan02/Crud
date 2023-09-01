@@ -14,7 +14,6 @@ body {
   margin: 20px 20px;
   padding-top: 60px;
   padding-right: 20px;
-  width: 100%;
   /* background-color: rgb(98, 98, 237); */
 }
 
@@ -130,8 +129,7 @@ thead{
     width: 100%;
     top: 0;
     left: 0;
-    background-color: rgb(0,0,0,0.6);
-    z-index: 1000000;
+    background-color: rgba(1, 1, 1, 0.6);
 }
 .mobileForm{
     background-color: white;
@@ -146,14 +144,12 @@ thead{
 }
 .group{
     display: flex;
+    flex-direction: column;
     margin: 15px 0;
-    gap: 10px;
 }
 .group label{
     width: 70px;
-    margin-left: 20px;
-    line-height: 40px;
-    height: 40px;
+    margin-left: 10px;
 }
 .action{
     display: flex;
@@ -162,3 +158,34 @@ thead{
     gap: 100px;
 }
 
+
+.group input {
+  margin-top: 10px;
+  margin-left: 20px;
+  border: 2px solid #2db60a;
+border-radius: 4px;
+display: block;
+font-size: 12px;
+padding: 10px;
+}
+.mes{
+  padding: 5px 20px;
+
+}
+.group input:focus {
+  outline: 0;
+}
+
+.group.success input {
+  border-color: #09c372;
+}
+
+.group.error input {
+  border-color: #ff3860;
+}
+
+.group .error {
+  color: #ff3860;
+  font-size: 9px;
+  height: 13px;
+}

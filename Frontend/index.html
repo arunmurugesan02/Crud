@@ -34,23 +34,28 @@
           <h1 class="btn btn-a">Add Users</h1>
         <div class="group">
             <label for="firstName">FirstName</label>
-            <input type="text" class="form-control" name="firstName" id="firstName"required>
+            <input type="text" class="form-control" name="firstName" id="firstName"  onchange="change()" required >
+            <div class="error mes"></div>
         </div>
         <div class="group">
             <label for="lastName">LastName</label>
-            <input type="text" class="form-control" name="firstName" id="lastName"  required>
+            <input type="text" class="form-control" name="firstName" id="lastName"  required >
+            <div class="error mes"></div>
         </div>
         <div class="group">
             <label for="DOB">DOB</label>
-            <input type="date" class="form-control" name="dob" id="dob"required>
+            <input type="date" class="form-control" name="dob" id="dob"required >
+            <div class="error mes"></div>
         </div>
         <div class="group">
             <label for="Email">Email</label>
-            <input type="email" class="form-control" name="email" id="email" required>
+            <input type="email" class="form-control" name="email" id="email" required >
+            <div class="error mes"></div>
         </div>
         <div class="group">
             <label for="phone">PhoneNo</label>
-            <input type="number" class="form-control"name="phone" id="phone" pattern="[1-9]{1}[0-9]{9}" required  >
+            <input type="number" class="form-control"name="phone" id="phone"  required  >
+            <div class="error mes"></div>
         </div>
 
         <div class="action">
