@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const mongoDB = function(){
     mongoose
-  .connect(process.env.MONGODB_URI, {
+  .connect('mongodb://localhost:27017/user', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })

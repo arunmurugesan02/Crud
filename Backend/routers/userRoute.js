@@ -4,11 +4,13 @@ const {
   getAllUsers,
   getUserById,
   createUser,
+  checkEmail,
   updateUser,
   deleteUser,
 } = require("../controller/userController");
 
 router.get("/", getAllUsers);
+router.get("/checkEmail", checkEmail);
 router.get("/:id", getUserById);
 router.post("/", createUser);
 router.put("/:id", updateUser);

@@ -38,6 +38,24 @@ const createUser = async (req, res) => {
   }
 };
 
+const checkEmail =async (req, res) => {
+  try {
+    const { email } = req.query;
+
+    // Check if the email already exists in the database
+    const existingUser = await User.findOne({ email });
+
+    if (existingUser) {
+      res.json({ exists: true });
+    } else {
+      res.json({ exists: false });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'An error occurred' });
+  }
+}
+
 const updateUser = async (req, res) => {
   try {
     await User.findByIdAndUpdate(req.params.id, req.body).exec();
@@ -65,6 +83,7 @@ module.exports = {
   getAllUsers,
   getUserById,
   createUser,
+  checkEmail,
   updateUser,
   deleteUser,
 };
