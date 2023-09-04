@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style.css" />
     <script defer src="main.js"></script>
   </head>
-  <body>
+  <body onload="handleDate()">
     <div class="main">
       <div class="container">
         <h1 style="font-size: 30px; padding-top: 2px;">Divum</h1>
@@ -34,17 +34,17 @@
           <h1 class="btn btn-a">Add Users</h1>
         <div class="group">
             <label for="firstName">FirstName</label>
-            <input type="text" class="form-control" name="firstName" id="firstName" onkeyup="NameValidation(this)" required >
+            <input type="text" class="form-control" name="firstName" id="firstName" onkeyup="fNameValidation(this)" required >
             <div class="error mes"></div>
         </div>
         <div class="group">
             <label for="lastName">LastName</label>
-            <input type="text" class="form-control" name="lastName" id="lastName" onkeyup="NameValidation(this)"  required >
+            <input type="text" class="form-control" name="lastName" id="lastName" onkeyup="lNameValidation(this)"  required >
             <div class="error mes"></div>
         </div>
         <div class="group">
             <label for="DOB">DOB</label>
-            <input type="date" class="form-control" name="dob" id="dob"required >
+            <input type="date" class="form-control" name="dob" id="dob"  >
             <div class="error mes"></div>
         </div>
         <div class="group">
@@ -54,7 +54,7 @@
         </div>
         <div class="group">
             <label for="phone">PhoneNo</label>
-            <input type="number" class="form-control"name="phone" id="phone"  required  >
+            <input type="number" class="form-control"name="phone" id="phone" onkeyup="PhoneValidation(this)" required  >
             <div class="error mes"></div>
         </div>
 

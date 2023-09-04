@@ -42,7 +42,6 @@ const checkEmail =async (req, res) => {
   try {
     const { email } = req.query;
 
-    // Check if the email already exists in the database
     const existingUser = await User.findOne({ email });
 
     if (existingUser) {

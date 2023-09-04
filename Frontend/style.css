@@ -11,10 +11,9 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 20px 20px;
+  margin: 40px 20px;
   padding-top: 60px;
   padding-right: 20px;
-  /* background-color: rgb(98, 98, 237); */
 }
 
 .container {
@@ -31,15 +30,14 @@ body {
   min-width: 400px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
-thead:hover{
-    background-color: #fff;
+#display tr:hover:nth-child(even) {
+  background: #FF6B6B
 }
-.display:hover:nth-child(odd){  
-  background: #ffc4c4;
+
+#display tr:hover:nth-child(odd) {
+  background: #FFE66D;
 }
-.display:hover:nth-child(even){  
-  background: #b2f8ff;
-}
+
 th,td {
   padding: 12px 15px;
 }
@@ -132,7 +130,7 @@ thead{
     background-color: rgba(1, 1, 1, 0.6);
 }
 .mobileForm{
-    background-color: white;
+    background-color: whitesmoke ;
     width: 600px;
     padding: 20px 50px;
     border-radius: 5px;

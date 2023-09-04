@@ -13,58 +13,60 @@ let data = {};
 let name = null;
 let id = null;
 let summa = [];
-let fname = false;
-let lname = false;
-let dobcheck = false;
-let emailc = false;
-let phonec = false;
+let fnamecheck = null,
+  lnamecheck = null,
+  dobcheck = null,
+  emailcheck = null,
+  phonecheck = null;
 
-function NameValidation(element) {
-  const name = /^[A-Za-z]+$/;
-  if (!name.test(firstName.value || lastName.value)) {
-    const inputControl = element.parentElement;
-    const errorDisplay = inputControl.querySelector(".error");
-
-    errorDisplay.innerText = "Enter a valid name";
-    inputControl.classList.add("error");
+function fNameValidation(element) {
+  namey = /^[A-Za-z]+$/;
+  if (!namey.test(firstName.value.trim())) {
+    fnamecheck = false;
+    Error(element, "Invalid name");
   } else {
-    const inputControl = element.parentElement;
-    const errorDisplay = inputControl.querySelector(".error");
-    errorDisplay.innerText = "";
-    inputControl.classList.remove("error");
+    fnamecheck = true;
+    Success(element);
   }
 }
-
+function lNameValidation(element) {
+  namex = /^[A-Za-z]+$/;
+  if (!namex.test(lastName.value.trim())) {
+    lnamecheck = false;
+    Error(element, "Invalid name");
+  } else {
+    lnamecheck = true;
+    Success(element);
+  }
+}
 async function EmailValidation(element) {
-  // var email = email.value; // Get the email value
-  const emailcheck = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  emailcheck = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
   console.log(email.value);
 
-  if (!emailcheck.test(email.value)) {
+  if (!emailcheck.test(email.value.trim())) {
+    emailcheck = false;
+    Error(element, "Enter a valid email");
+  } else {
     const inputControl = element.parentElement;
     const errorDisplay = inputControl.querySelector(".error");
 
-    errorDisplay.innerText = "Enter a valid email address";
-    inputControl.classList.add("error");
-  } else {
-    const inputControl = element.parentElement;
-    const errorDisplay = inputControl.querySelector(".error");  
-
     try {
-      console.log("asdaf");
-      const response = await fetch(`http://localhost:8000/user/checkEmail?email=${encodeURIComponent(email.value)}`, {
-          method: 'GET',
-        });
+      const response = await fetch(
+        `http://localhost:8000/user/checkEmail?email=${encodeURIComponent(
+          email.value
+        )}`,
+        {
+          method: "GET",
+        }
+      );
 
       const data = await response.json();
-      console.log(data);
-
       if (data.exists) {
-        errorDisplay.innerText = "Email already exists";
-        inputControl.classList.add("error");
+        emailcheck = false;
+        Error(element, "Email already exists");
       } else {
-        errorDisplay.innerText = ""; // Clear the error message if email is valid and doesn't exist
-        inputControl.classList.remove("error");
+        emailcheck = true;
+        Success(element);
       }
     } catch (error) {
       console.error(error);
@@ -73,18 +75,61 @@ async function EmailValidation(element) {
   }
 }
 
-add.onclick = function () {
+const handleDate = () => {
+  let todayDate = new Date().toISOString().split("T")[0];
+  document.getElementById("dob").setAttribute("max", todayDate);
+};
+
+function PhoneValidation(element) {
+  phonecheck = /^[0-9]{10}$/;
+  if (!phonecheck.test(phone.value.trim())) {
+    phonecheck = false;
+    Error(element, "Invalid phone number");
+  } else {
+    phonecheck = true;
+    Success(element);
+  }
+}
+
+function Error(element, message) {
+  const inputControl = element.parentElement;
+  const errorDisplay = inputControl.querySelector(".error");
+  errorDisplay.innerText = message;
+  inputControl.classList.add("error");
+}
+
+function Success(element) {
+  const inputControl = element.parentElement;
+  const errorDisplay = inputControl.querySelector(".error");
+  errorDisplay.innerText = "";
+  inputControl.classList.remove("error");
+}
+function clearValidation() {
+  fnamecheck = null;
+  lnamecheck = null;
+  dobcheck = null;
+  emailcheck = null;
+  phonecheck = null;
+
+  Success(firstName);
+  Success(lastName);
+  Success(dob);
+  Success(email);
+  Success(phone);
+}
+add.addEventListener("click", function (event) {
+  clearValidation();
   ena_method = "POST";
   clearform();
   form.classList.add("upper");
-};
+});
 
-cancel.onclick = function () {
+cancel.addEventListener("click", () => {
   clearform();
   form.classList.remove("upper");
-};
+});
 
-submit.onclick = async function () {
+submit.addEventListener("click", async () => {
   data = {
     firstName: firstName.value,
     lastName: lastName.value,
@@ -93,34 +138,36 @@ submit.onclick = async function () {
     phone: phone.value,
   };
 
-  console.log(ena_method);
-  if (ena_method == "PUT") {
-    console.log(id);
-    await fetch(`http://localhost:8000/user/${id}`, {
-      method: "PUT",
-      body: JSON.stringify(data),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }).then(() => {
-      clearform();
-      form.classList.remove("upper");
-      getting();
-    });
-  } else {
-    await fetch("http://localhost:8000/user", {
-      method: "POST",
-      body: JSON.stringify(data),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }).then(() => {
-      clearform();
-      form.classList.remove("upper");
-      getting();
-    });
+  console.log(fnamecheck, lnamecheck, dobcheck, emailcheck, phonecheck);
+  if (fnamecheck && lnamecheck && dobcheck && emailcheck && phonecheck) {
+    if (ena_method == "PUT") {
+      console.log(id);
+      await fetch(`http://localhost:8000/user/${id}`, {
+        method: "PUT",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }).then(() => {
+        clearform();
+        form.classList.remove("upper");
+        getting();
+      });
+    } else {
+      await fetch("http://localhost:8000/user", {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }).then(() => {
+        clearform();
+        form.classList.remove("upper");
+        getting();
+      });
+    }
   }
-};
+});
 function clearform() {
   firstName.value =
     lastName.value =
@@ -133,18 +180,26 @@ const getting = async () => {
   const response = await fetch("http://localhost:8000/user");
   const data = await response.json();
   summa = data;
+  console.log(summa);
   updating();
 };
 getting();
 
 const updating = async () => {
   let tableData = "";
+  
   summa.forEach((result) => {
+    let dob = new Date(result.dob);
+  let formattedDob = `${dob.getDate().toString().padStart(2, "0")}-${(
+    dob.getMonth() + 1
+  )
+    .toString()
+    .padStart(2, "0")}-${dob.getFullYear().toString().slice(-4)}`;
     tableData += `<tr id=${result._id} >
            
             <td>${result.firstName}</td>
             <td>${result.lastName}</td>
-            <td>${result.dob}</td>
+            <td>${formattedDob}</td>
             <td>${result.email}</td>
             <td>${result.phone}</td>
             <td>
@@ -158,7 +213,7 @@ const updating = async () => {
 updating();
 
 function editData(event) {
-  console.log(event.target.parentElement.parentElement.id);
+  fnamecheck = lnamecheck = dobcheck = emailcheck = phonecheck = true;
   form.classList.add("upper");
   ena_method = "PUT";
   id = event.target.parentElement.parentElement.id;
@@ -182,3 +237,12 @@ async function deleteData(event) {
     getting();
   });
 }
+module.exports = {
+  fNameValidation,
+  Error,
+  Success,
+  PhoneValidation,
+  EmailValidation,
+  handleDate,
+  clearValidation,
+};
