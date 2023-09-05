@@ -39,6 +39,19 @@ function lNameValidation(element) {
     Success(element);
   }
 }
+
+function DobValidation(element) {
+  const futureDate = new Date();
+  const selectedDate = new Date(element.value);
+  if (selectedDate > futureDate) {
+    dobcheck = false;
+    Error(element, "Future Date is not allowed");
+  } else {
+    dobcheck = true;
+    Success(element);
+  }
+}
+
 async function EmailValidation(element) {
   emailcheck = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
   console.log(email.value);
@@ -75,16 +88,11 @@ async function EmailValidation(element) {
   }
 }
 
-const handleDate = () => {
-  let todayDate = new Date().toISOString().split("T")[0];
-  document.getElementById("dob").setAttribute("max", todayDate);
-};
-
 function PhoneValidation(element) {
   phonecheck = /^[0-9]{10}$/;
   if (!phonecheck.test(phone.value.trim())) {
     phonecheck = false;
-    Error(element, "Invalid phone number");
+    Error(element, "Enter 10 digits only");
   } else {
     phonecheck = true;
     Success(element);
@@ -117,12 +125,12 @@ function clearValidation() {
   Success(email);
   Success(phone);
 }
-add.addEventListener("click", function (event) {
+add.onclick= function() { 
   clearValidation();
   ena_method = "POST";
   clearform();
   form.classList.add("upper");
-});
+};
 
 cancel.addEventListener("click", () => {
   clearform();
@@ -187,14 +195,14 @@ getting();
 
 const updating = async () => {
   let tableData = "";
-  
+
   summa.forEach((result) => {
     let dob = new Date(result.dob);
-  let formattedDob = `${dob.getDate().toString().padStart(2, "0")}-${(
-    dob.getMonth() + 1
-  )
-    .toString()
-    .padStart(2, "0")}-${dob.getFullYear().toString().slice(-4)}`;
+    let formattedDob = `${dob.getDate().toString().padStart(2, "0")}-${(
+      dob.getMonth() + 1
+    )
+      .toString()
+      .padStart(2, "0")}-${dob.getFullYear().toString().slice(-4)}`;
     tableData += `<tr id=${result._id} >
            
             <td>${result.firstName}</td>
@@ -237,12 +245,4 @@ async function deleteData(event) {
     getting();
   });
 }
-module.exports = {
-  fNameValidation,
-  Error,
-  Success,
-  PhoneValidation,
-  EmailValidation,
-  handleDate,
-  clearValidation,
-};
+

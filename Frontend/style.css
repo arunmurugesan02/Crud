@@ -5,6 +5,8 @@
   font-style: italic;
   font-size: 15px;
   font-weight: 600;
+  
+
 }
 
 body {
@@ -14,6 +16,7 @@ body {
   margin: 40px 20px;
   padding-top: 60px;
   padding-right: 20px;
+  background-color: #7b6df5;
 }
 
 .container {
@@ -44,12 +47,18 @@ th,td {
 thead{
     background-color: #f1f1f1;
 }
+.add{
+  height: 50px;
+}
 .table tbody tr {
     border-bottom: 1px solid  #009879;
 }
 
 .table tbody tr:nth-of-type(even) {
     background-color: #f3f3f3;
+}
+.table tbody tr:nth-of-type(odd) {
+  background-color:rgb(222, 218, 218);
 }
 
 .table tbody tr:last-of-type {

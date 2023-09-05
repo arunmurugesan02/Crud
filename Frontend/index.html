@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CRUD</title>
     <link rel="stylesheet" href="style.css" />
-    <script defer src="main.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@0.7.4/dist/tailwind.min.css" rel="stylesheet">
   </head>
-  <body onload="handleDate()">
-    <div class="main">
+  <body>
+    <div class="main ">
       <div class="container">
-        <h1 style="font-size: 30px; padding-top: 2px;">Divum</h1>
+        <h1 style="font-size: 50px; padding-top: 2px;font-family: Georgia, 'Times New Roman', Times, serif;" class="title">Divum</h1>
         <button class="btn add">AddUser</button>
       </div>
 
@@ -29,7 +29,7 @@
         </tbody>  
       </table>
     </div>
-    <div class="form-wrapper">
+    <div class="form-wrapper ">
         <div class="mobileForm">
           <h1 class="btn btn-a">Add Users</h1>
         <div class="group">
@@ -44,7 +44,7 @@
         </div>
         <div class="group">
             <label for="DOB">DOB</label>
-            <input type="date" class="form-control" name="dob" id="dob"  >
+            <input type="date" class="form-control" name="dob" id="dob" onchange="DobValidation(this)" >
             <div class="error mes"></div>
         </div>
         <div class="group">
@@ -65,5 +65,7 @@
     </div>
         
     </div>
+    <script  src="main.js"></script>
+
   </body>
 </html>
